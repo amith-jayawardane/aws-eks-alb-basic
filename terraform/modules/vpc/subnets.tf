@@ -43,3 +43,26 @@ resource "aws_subnet" "eks_node_group_subnet_2" {
     Environment = "production"
   }
 }
+
+# Public subnets
+resource "aws_subnet" "production_public_subnet" {
+  vpc_id     = aws_vpc_ipv4_cidr_block_association.production_public_CIDR.vpc_id
+  cidr_block = "172.10.20.0/25"
+  availability_zone = "ap-southeast-1a"
+
+  tags = {
+    Name = "production_public_subnet"
+    Environment = "production"
+  }
+}
+
+resource "aws_subnet" "production_public_bastian_subnet" {
+  vpc_id     = aws_vpc_ipv4_cidr_block_association.production_public_CIDR.vpc_id
+  cidr_block = "172.10.20.128/25"
+  availability_zone = "ap-southeast-1a"
+
+  tags = {
+    Name = "production_public_bastian_subnet"
+    Environment = "production"
+  }
+}
