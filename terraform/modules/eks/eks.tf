@@ -5,6 +5,7 @@ resource "aws_eks_cluster" "production-eks" {
 
   vpc_config {
     subnet_ids = [var.eks_subnet_1_id, var.eks_subnet_2_id]
+    security_group_ids = [var.eks_cluster_security_group_id]
     endpoint_private_access = true
     endpoint_public_access  = false
   }
