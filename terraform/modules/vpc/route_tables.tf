@@ -57,7 +57,12 @@ resource "aws_route_table_association" "rta-4" {
 #   vpc_endpoint_id = aws_vpc_endpoint.s3.id
 # }
 
-resource "aws_route_table_association" "public-rta" {
+resource "aws_route_table_association" "public-rta-nat-gw" {
   route_table_id  = aws_route_table.production-public-rt.id
   subnet_id = aws_subnet.production_public_subnet.id
+}
+
+resource "aws_route_table_association" "public-rta-bastion-host" {
+  route_table_id  = aws_route_table.production-public-rt.id
+  subnet_id = aws_subnet.production_public_bastian_subnet.id
 }

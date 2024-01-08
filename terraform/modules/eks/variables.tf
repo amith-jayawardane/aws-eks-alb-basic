@@ -21,3 +21,7 @@ variable "eks_node_group_subnet_1_id" {
 variable "eks_node_group_subnet_2_id" {
   type = string
 }
+
+variable "eks_cluster_security_group_id" {
+  type = string
+}
