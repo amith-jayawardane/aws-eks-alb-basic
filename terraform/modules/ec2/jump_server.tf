@@ -20,6 +20,16 @@ resource "aws_instance" "jump_server" {
   key_name = aws_key_pair.jump_server_key.id
   vpc_security_group_ids = [var.allow_ssh_security_group_id]
 
+  user_data = <<-EOL
+  #!/usr/bin/bash
+  echo "Download kubectl from s3"
+  curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.28.3/2023-11-14/bin/linux/amd64/kubectl
+  mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+  echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+  echo "Print kubectl version"
+  kubectl version --client
+  EOL
+
   tags = {
     Name = "jump_server"
   }

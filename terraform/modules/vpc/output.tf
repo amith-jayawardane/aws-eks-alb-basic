@@ -25,3 +25,7 @@ output "allow_ssh_security_group_id" {
 output "eks_cluster_security_group_id" {
   value = aws_security_group.eks_cluster_sg.id
 }
+
+output "nat_gateway_public_ip" {
+  value = aws_nat_gateway.production_nat_gateway.public_ip
+}
